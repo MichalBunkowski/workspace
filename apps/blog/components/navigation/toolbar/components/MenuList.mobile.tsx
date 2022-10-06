@@ -1,4 +1,5 @@
 import {
+  Grid,
   List,
   ListItem,
   ListItemText,
@@ -7,6 +8,7 @@ import {
 } from '@mui/material';
 import { pages } from '../../../../constants/pages';
 import Link from '../../Link';
+import LanguageDropdown from '../../../inputs/language/LanguageDropdown';
 
 interface MenuListProps {
   isMenuOpened: boolean;
@@ -26,26 +28,33 @@ export default function MenuList({
       onOpen={() => onMenuToggle(true)}
       onClose={() => onMenuToggle(false)}
     >
-      <List
-        sx={{
-          paddingBottom: theme.spacing(10),
-        }}
-      >
-        {pages.map((page) => (
-          <Link
-            key={page.href}
-            href={page.href}
-            type="link"
-            color="secondary"
-            underline="none"
-            onClick={() => onMenuToggle(false)}
+      <Grid container justifyContent="space-between">
+        <Grid item xs={7}>
+          <List
+            sx={{
+              paddingBottom: theme.spacing(12),
+            }}
           >
-            <ListItem>
-              <ListItemText primary={page.name} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+            {pages.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                type="link"
+                color="secondary"
+                underline="none"
+                onClick={() => onMenuToggle(false)}
+              >
+                <ListItem>
+                  <ListItemText primary={page.name} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs={5} sx={{ padding: theme.spacing(2, 2) }}>
+          <LanguageDropdown />
+        </Grid>
+      </Grid>
     </SwipeableDrawer>
   );
 }

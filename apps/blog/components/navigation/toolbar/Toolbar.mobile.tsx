@@ -17,13 +17,8 @@ export default function ToolbarMobile(): JSX.Element {
         sx={{ top: 'auto', bottom: 0, zIndex: theme.zIndex.drawer + 1 }}
       >
         <MuiToolbar>
-          <Grid container justifyContent="space-between">
-            <Grid item>
-              <MenuButton
-                isMenuOpened={isMenuOpened}
-                onMenuToggle={toggleMenu}
-              />
-            </Grid>
+          <MenuButton isMenuOpened={isMenuOpened} onMenuToggle={toggleMenu} />
+          <Grid container justifyContent="center">
             <Grid item>
               <Logo />
             </Grid>
