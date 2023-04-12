@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@workspace/hooks": ["libs/hooks/src/index.ts"],
-      "@workspace/theme": ["libs/theme/src/index.ts"]
+      "@workspace/theme": ["libs/theme/src/index.ts"],
+      "@workspace/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

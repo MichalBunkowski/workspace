@@ -6,6 +6,7 @@
     "blog-e2e": "apps/blog-e2e",
     "hooks": "libs/hooks",
     "theme": "libs/theme",
+    "utils": "libs/utils",
     "wordle": "apps/wordle",
     "wordle-e2e": "apps/wordle-e2e"
   }
