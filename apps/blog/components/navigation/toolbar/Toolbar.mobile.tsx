@@ -1,9 +1,9 @@
 import { AppBar, Grid, Toolbar as MuiToolbar, useTheme } from '@mui/material';
 
 import useToggle from '../../../hooks/use-toggle';
+import Logo from '../../logo/Logo';
 
 import MenuButton from './components/MenuButton.mobile';
-import Logo from '../../logo/Logo';
 import MenuList from './components/MenuList.mobile';
 
 export default function ToolbarMobile(): JSX.Element {

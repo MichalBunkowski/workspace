@@ -1,6 +1,7 @@
-import { SingleWordConsumer, SingleWordProvider } from './SingleWordContext';
-import { FC, PropsWithChildren } from 'react';
 import { Box, InputBase } from '@mui/material';
+import { FC, PropsWithChildren } from 'react';
+
+import { SingleWordConsumer, SingleWordProvider } from './SingleWordContext';
 
 interface WordleInputProps {
   name: string;

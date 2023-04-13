@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
     "start:wordle": "nx serve wordle",
-    "build": "nx build",
-    "test": "nx test"
+    "format:wordle": "nx lint wordle --fix",
+    "build:wordle": "nx build wordle --fix",
+    "start:blog": "nx serve blog",
+    "format:blog": "nx lint blog --fix",
+    "build:blog": "nx build blog --fix"
   },
   "private": true,
   "dependencies": {
@@ -51,7 +53,7 @@
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
-    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.8",
     "eslint-plugin-react-hooks": "4.6.0",

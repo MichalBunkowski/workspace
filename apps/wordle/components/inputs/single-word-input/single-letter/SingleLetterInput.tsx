@@ -1,12 +1,15 @@
-import { FC, FocusEventHandler, useMemo } from 'react';
 import { TextField, useTheme } from '@mui/material';
-import { useSingleWord } from '../SingleWordContext';
+import { FC, FocusEventHandler, useMemo } from 'react';
+
 import { useFocusHandler } from '@workspace/hooks';
+
+import { useSingleWord } from '../SingleWordContext';
 
 export interface SingleLetterInputProps {
   name: string;
   index: number;
-  reveal: boolean;
+  isRevealed: boolean;
+  isDisabled?: boolean;
   onBlur: FocusEventHandler;
   prevName?: string;
   nextName?: string;
@@ -16,7 +19,8 @@ export interface SingleLetterInputProps {
 export const SingleLetterInput: FC<SingleLetterInputProps> = ({
   name,
   index,
-  reveal,
+  isRevealed,
+  isDisabled,
   onBlur,
   prevName,
   nextName,
@@ -58,7 +62,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
     <TextField
       inputProps={{ name, maxLength: 1 }}
       value={value ?? ''}
-      disabled={reveal}
+      disabled={isRevealed || isDisabled}
       onChange={(e) => {
         updateLetterAtIndex(index, e.target.value);
       }}
@@ -76,7 +80,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
         },
         width: theme.spacing(7),
         height: theme.spacing(7),
-        ...(reveal && colors
+        ...(isRevealed && colors
           ? {
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {

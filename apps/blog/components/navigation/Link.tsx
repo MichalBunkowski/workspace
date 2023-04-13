@@ -5,7 +5,6 @@ import {
   LinkProps as MuiLinkProps,
 } from '@mui/material';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-
 import { omit } from 'lodash-es';
 
 interface ButtonTypeProps extends Omit<ButtonProps, 'href'> {

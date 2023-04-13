@@ -1,4 +1,5 @@
 import { Theme, useMediaQuery } from '@mui/material';
+
 import ToolbarMobile from './Toolbar.mobile';
 import ToolbarDesktop from './Toolbar.desktop';
 

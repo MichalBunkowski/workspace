@@ -1,13 +1,14 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FC, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { SingleWordInput } from '../inputs/single-word-input/SingleWordInput';
+import * as z from 'zod';
+
+import { useWordle } from '../../context/WordleContext';
 import {
   SingleLetterInput,
   SingleLetterInputProps,
 } from '../inputs/single-word-input/single-letter/SingleLetterInput';
-import { useWordle } from '../../context/WordleContext';
-import { FC, useCallback } from 'react';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SingleWordInput } from '../inputs/single-word-input/SingleWordInput';
 
 const formDef: Array<
   Pick<SingleLetterInputProps, 'name' | 'nextName' | 'prevName'>
@@ -37,7 +38,7 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  const { drawnWord, verifyUserInput } = useWordle();
+  const { drawnWord, isWinner, verifyUserInput } = useWordle();
 
   const {
     handleSubmit,
@@ -86,7 +87,8 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
                 isLetterAtCorrectPosition={
                   drawnWord.charAt(index) === field.value.charAt(index)
                 }
-                reveal={isSubmitSuccessful}
+                isDisabled={isWinner}
+                isRevealed={isSubmitSuccessful}
                 onBlur={field.onBlur}
               />
             ))}

@@ -1,5 +1,6 @@
-import { LogoWord } from './Logo.styled';
 import Link from '../navigation/Link';
+
+import { LogoWord } from './Logo.styled';
 
 export default function Logo(): JSX.Element {
   return (

@@ -1,8 +1,9 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { createEmotionCache, theme } from '@workspace/theme';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { ThemeProvider } from '@mui/material';
+
+import { createEmotionCache, theme } from '@workspace/theme';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
