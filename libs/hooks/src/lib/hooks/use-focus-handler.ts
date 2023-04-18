@@ -1,4 +1,13 @@
-import { KeyboardEventHandler, useCallback, useEffect, useState } from 'react';
+import {
+  KeyboardEventHandler,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+import { findInputElementAndFocus } from '../../../../utils/src/lib/findElementAndFocus';
 
 interface UseFocusHandlerOptions {
   observe: unknown;
@@ -7,24 +16,25 @@ interface UseFocusHandlerOptions {
   previousInputName?: string;
   nextInputName?: string;
 }
+
+type UseFocusHandlerReturn = [
+  boolean,
+  Dispatch<SetStateAction<boolean>>,
+  KeyboardEventHandler
+];
+
 export const useFocusHandler = ({
   observe,
   isValid,
   isEmpty,
   previousInputName,
   nextInputName,
-}: UseFocusHandlerOptions) => {
+}: UseFocusHandlerOptions): UseFocusHandlerReturn => {
   const [isFocused, setFocused] = useState(false);
 
   useEffect(() => {
     if (isValid && isFocused) {
-      const input = document.querySelector<HTMLInputElement>(
-        `input[name="${nextInputName}"]`
-      );
-      if (input) {
-        input.focus();
-        input.select();
-      }
+      findInputElementAndFocus(`input[name="${nextInputName}"]`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValid, observe]);
@@ -32,16 +42,14 @@ export const useFocusHandler = ({
   const handleFocusPreviousInput = useCallback<KeyboardEventHandler>(
     (event) => {
       if (isEmpty && isFocused && event.key === 'Backspace') {
-        const input = document.querySelector<HTMLInputElement>(
-          `input[name="${previousInputName}"]`
-        );
-        if (input) {
-          input.focus();
-        }
+        findInputElementAndFocus(`input[name="${previousInputName}"]`);
       }
     },
     [isEmpty, isFocused, previousInputName]
   );
 
-  return { setFocused, handleFocusPreviousInput };
+  return useMemo(
+    () => [isFocused, setFocused, handleFocusPreviousInput],
+    [isFocused, handleFocusPreviousInput]
+  );
 };

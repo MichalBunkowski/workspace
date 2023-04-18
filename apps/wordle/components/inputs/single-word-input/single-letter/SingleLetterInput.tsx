@@ -1,7 +1,8 @@
-import { TextField, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { FC, FocusEventHandler, useMemo } from 'react';
 
 import { useFocusHandler } from '@workspace/hooks';
+import { AnimatedTextField } from '@workspace/components/animated';
 
 import { useSingleWord } from '../SingleWordContext';
 
@@ -32,7 +33,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
 
   const value = letters[index] ?? '';
 
-  const { setFocused, handleFocusPreviousInput } = useFocusHandler({
+  const [isFocused, setFocused, handleFocusPreviousInput] = useFocusHandler({
     observe: value,
     isValid: value.length === 1,
     isEmpty: value.length === 0,
@@ -59,7 +60,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
   }, [isLetterAtCorrectPosition, isLetterCorrect]);
 
   return (
-    <TextField
+    <AnimatedTextField
       inputProps={{ name, maxLength: 1 }}
       value={value ?? ''}
       disabled={isRevealed || isDisabled}
@@ -80,16 +81,27 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
         },
         width: theme.spacing(7),
         height: theme.spacing(7),
-        ...(isRevealed && colors
-          ? {
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            transition: 'border-color 1s, background 1s',
+
+            ...(isRevealed && colors
+              ? {
                   borderColor: colors.border,
                   background: colors.background,
-                },
-              },
-            }
-          : {}),
+                }
+              : {}),
+          },
+        },
+      }}
+      animate={isFocused ? 'focused' : 'blurred'}
+      variants={{
+        focused: {
+          scale: 1.2,
+        },
+        blurred: {
+          scale: 1,
+        },
       }}
     />
   );

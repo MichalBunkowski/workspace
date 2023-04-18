@@ -3,6 +3,8 @@ import { FC, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 
+import { findInputElementAndFocus } from '@workspace/utils';
+
 import { useWordle } from '../../context/WordleContext';
 import {
   SingleLetterInput,
@@ -21,7 +23,7 @@ const formDef: Array<
 ];
 
 const SingleWordFormSchema = z.object({
-  word: z.string().min(1).max(5),
+  word: z.string().min(5),
 });
 
 type SingleWordFormValue = z.infer<typeof SingleWordFormSchema>;
@@ -50,16 +52,10 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
       const isValid = verifyUserInput(word);
 
       if (!isValid) {
-        const nextFormFirstInput = document.querySelector<HTMLInputElement>(
-          `#${nextId}  input[name="1st${nextId}"]`
+        findInputElementAndFocus(
+          `#${nextId}  input[name="1st${nextId}"]`,
+          true
         );
-
-        console.log(nextFormFirstInput);
-
-        if (nextFormFirstInput) {
-          nextFormFirstInput.focus();
-          nextFormFirstInput.select();
-        }
       }
     },
     [nextId, verifyUserInput]

@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@workspace/components/animated": [
+        "libs/components/animated/src/index.ts"
+      ],
       "@workspace/hooks": ["libs/hooks/src/index.ts"],
       "@workspace/theme": ["libs/theme/src/index.ts"],
       "@workspace/utils": ["libs/utils/src/index.ts"]
