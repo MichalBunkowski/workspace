@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren } from 'react';
 import { Container } from '@mui/material';
 import { motion } from 'framer-motion';
+import { FC, PropsWithChildren } from 'react';
 
 const variants = {
   hidden: { opacity: 0 },

@@ -1,8 +1,7 @@
 import { useTheme } from '@mui/material';
 import { FC, FocusEventHandler, useMemo } from 'react';
-
-import { useFocusHandler } from '@workspace/hooks';
 import { AnimatedTextField } from '@workspace/components/animated';
+import { useFocusHandler } from '@workspace/hooks';
 
 import { useSingleWord } from '../SingleWordContext';
 

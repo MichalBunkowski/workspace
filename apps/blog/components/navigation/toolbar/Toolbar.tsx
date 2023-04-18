@@ -1,7 +1,7 @@
 import { Theme, useMediaQuery } from '@mui/material';
 
-import ToolbarMobile from './Toolbar.mobile';
 import ToolbarDesktop from './Toolbar.desktop';
+import ToolbarMobile from './Toolbar.mobile';
 
 export default function Toolbar(): JSX.Element {
   const isMobile = useMediaQuery<Theme>((theme) =>

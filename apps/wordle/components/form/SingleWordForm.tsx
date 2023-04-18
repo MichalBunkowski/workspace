@@ -6,11 +6,11 @@ import * as z from 'zod';
 import { findInputElementAndFocus } from '@workspace/utils';
 
 import { useWordle } from '../../context/WordleContext';
+import { SingleWordInput } from '../inputs/single-word-input/SingleWordInput';
 import {
   SingleLetterInput,
   SingleLetterInputProps,
 } from '../inputs/single-word-input/single-letter/SingleLetterInput';
-import { SingleWordInput } from '../inputs/single-word-input/SingleWordInput';
 
 const formDef: Array<
   Pick<SingleLetterInputProps, 'name' | 'nextName' | 'prevName'>

@@ -7,10 +7,10 @@ import {
   useTheme,
 } from '@mui/material';
 
-import Link from '../Link';
 import { pages } from '../../../constants/pages';
-import Logo from '../../logo/Logo';
 import LanguageDropdown from '../../inputs/language/LanguageDropdown';
+import Logo from '../../logo/Logo';
+import Link from '../Link';
 
 export default function ToolbarDesk(): JSX.Element {
   const theme = useTheme();

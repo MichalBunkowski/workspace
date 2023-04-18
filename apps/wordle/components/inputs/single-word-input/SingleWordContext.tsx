@@ -8,6 +8,7 @@ import {
   useMemo,
   useState,
 } from 'react';
+
 import { noop } from '@workspace/utils';
 
 export interface SingleWordState {

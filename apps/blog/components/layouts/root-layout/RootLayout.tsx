@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
 import { Container } from '@mui/material';
+import { PropsWithChildren } from 'react';
 
 import Toolbar from '../../navigation/toolbar/Toolbar';
 

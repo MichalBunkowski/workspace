@@ -1,6 +1,7 @@
 import { AppBar, Grid, Toolbar as MuiToolbar, useTheme } from '@mui/material';
 
-import useToggle from '../../../hooks/use-toggle';
+import { useToggle } from '@workspace/hooks';
+
 import Logo from '../../logo/Logo';
 
 import MenuButton from './components/MenuButton.mobile';

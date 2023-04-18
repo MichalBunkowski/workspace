@@ -1,7 +1,7 @@
+import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton, useTheme, Zoom } from '@mui/material';
 import { useMemo } from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 
 interface MenuButtonProps {
   isMenuOpened: boolean;

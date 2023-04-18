@@ -1,3 +1,4 @@
+import { findInputElementAndFocus } from '@workspace/utils';
 import {
   KeyboardEventHandler,
   useCallback,
@@ -7,7 +8,6 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react';
-import { findInputElementAndFocus } from '../../../../utils/src/lib/findElementAndFocus';
 
 interface UseFocusHandlerOptions {
   observe: unknown;

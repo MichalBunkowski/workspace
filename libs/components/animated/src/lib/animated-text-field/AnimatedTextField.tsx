@@ -6,4 +6,6 @@ const TextField = forwardRef<HTMLDivElement, Omit<TextFieldProps, 'style'>>(
   (props, ref) => <MuiTextField ref={ref} {...props} />
 );
 
+TextField.displayName = 'AnimatedTextField';
+
 export const AnimatedTextField = motion(TextField);
