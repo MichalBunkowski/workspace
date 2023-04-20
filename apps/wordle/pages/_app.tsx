@@ -10,7 +10,6 @@ import { AnimatePresence } from 'framer-motion';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-
 import { createEmotionCache, theme } from '@workspace/theme';
 
 const clientSideEmotionCache = createEmotionCache();
@@ -25,8 +24,6 @@ function App({
   emotionCache = clientSideEmotionCache,
 }: AppPropsWithEmotionCache) {
   const router = useRouter();
-
-  console.log(router);
 
   return (
     <CacheProvider value={emotionCache}>

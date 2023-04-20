@@ -1,16 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, useCallback } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
-
+import { useRouter } from 'next/router';
 import { findInputElementAndFocus } from '@workspace/utils';
 
-import { useWordle } from '../../context/WordleContext';
 import { SingleWordInput } from '../inputs/single-word-input/SingleWordInput';
 import {
   SingleLetterInput,
   SingleLetterInputProps,
 } from '../inputs/single-word-input/single-letter/SingleLetterInput';
+import { useWordleStore } from '../../store/wordle';
 
 const formDef: Array<
   Pick<SingleLetterInputProps, 'name' | 'nextName' | 'prevName'>
@@ -30,17 +30,24 @@ type SingleWordFormValue = z.infer<typeof SingleWordFormSchema>;
 
 export interface SingleWordFormProps {
   id: string;
+  index: number;
   nextId?: string;
 }
 
-export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
+export const SingleWordForm: FC<SingleWordFormProps> = ({
+  id,
+  index: formIndex,
+  nextId,
+}) => {
+  const router = useRouter();
+
   const form = useForm<SingleWordFormValue>({
     defaultValues: { word: '' },
     resolver: zodResolver(SingleWordFormSchema),
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   });
-  const { drawnWord, isWinner, verifyUserInput } = useWordle();
+  const { amountOfTries, drawnWord, isWinner, check } = useWordleStore();
 
   const {
     handleSubmit,
@@ -49,20 +56,30 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
 
   const checkIfWordIsCorrect = useCallback(
     ({ word }: SingleWordFormValue) => {
-      const isValid = verifyUserInput(word);
+      const isValid = check(word);
 
-      if (!isValid) {
-        findInputElementAndFocus(
-          `#${nextId}  input[name="1st${nextId}"]`,
-          true
-        );
+      if (isValid) {
+        router.replace('/score');
       }
     },
-    [nextId, verifyUserInput]
+    [router, check]
   );
 
+  useEffect(() => {
+    const isNextFormEnabled = amountOfTries === formIndex + 1;
+
+    if (isNextFormEnabled) {
+      findInputElementAndFocus(`#${nextId}  input[name="1st${nextId}"]`, true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [amountOfTries]);
+
   return (
-    <form id={id} onSubmit={handleSubmit(checkIfWordIsCorrect)}>
+    <form
+      id={id}
+      autoComplete="off"
+      onSubmit={handleSubmit(checkIfWordIsCorrect)}
+    >
       <Controller
         name="word"
         control={form.control}
@@ -83,7 +100,7 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({ id, nextId }) => {
                 isLetterAtCorrectPosition={
                   drawnWord.charAt(index) === field.value.charAt(index)
                 }
-                isDisabled={isWinner}
+                isDisabled={isWinner || amountOfTries !== formIndex}
                 isRevealed={isSubmitSuccessful}
                 onBlur={field.onBlur}
               />

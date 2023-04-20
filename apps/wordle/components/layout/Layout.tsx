@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { motion } from 'framer-motion';
 import { FC, PropsWithChildren } from 'react';
 
@@ -18,7 +18,14 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         variants={variants}
         transition={{ type: 'linear' }}
       >
-        {children}
+        <Box
+          height="100vh"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+        >
+          {children}
+        </Box>
       </motion.main>
     </Container>
   );

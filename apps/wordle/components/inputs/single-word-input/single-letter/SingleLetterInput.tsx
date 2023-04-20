@@ -1,5 +1,6 @@
 import { useTheme } from '@mui/material';
 import { FC, FocusEventHandler, useMemo } from 'react';
+
 import { AnimatedTextField } from '@workspace/components/animated';
 import { useFocusHandler } from '@workspace/hooks';
 
@@ -43,20 +44,20 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
   const colors = useMemo(() => {
     if (isLetterCorrect && !isLetterAtCorrectPosition) {
       return {
-        border: '#e6b80f',
-        background: 'rgba(230,184,15,0.2)',
+        border: theme.color.yellow,
+        background: theme.color.yellowAlpha,
       };
     }
 
     if (isLetterCorrect && isLetterAtCorrectPosition) {
       return {
-        border: '#3de60f',
-        background: 'rgba(61,230,15,0.2)',
+        border: theme.color.green,
+        background: theme.color.greenAlpha,
       };
     }
 
     return null;
-  }, [isLetterAtCorrectPosition, isLetterCorrect]);
+  }, [isLetterAtCorrectPosition, isLetterCorrect, theme]);
 
   return (
     <AnimatedTextField
@@ -93,7 +94,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
           },
         },
       }}
-      animate={isFocused ? 'focused' : 'blurred'}
+      animate={isFocused && !isRevealed ? 'focused' : 'blurred'}
       variants={{
         focused: {
           scale: 1.2,

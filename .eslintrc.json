@@ -31,7 +31,7 @@
       "rules": {}
     }
   ],
-  "plugins": ["@nrwl/nx", "unused-imports", "import", "react"],
+  "plugins": ["@nrwl/nx", "unused-imports", "import", "react", "prettier"],
   "root": true,
   "rules": {
     "import/export": "error",
@@ -73,6 +73,7 @@
         "vars": "all",
         "varsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "prettier/prettier": "error"
   }
 }
