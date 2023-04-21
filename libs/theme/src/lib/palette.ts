@@ -11,7 +11,9 @@ export type Color = Record<
   | 'yellow'
   | 'yellowAlpha'
   | 'green'
-  | 'greenAlpha',
+  | 'greenAlpha'
+  | 'red'
+  | 'redAlpha',
   string
 >;
 
@@ -25,8 +27,10 @@ export const color: Color = {
   blackish: '#212121',
   yellow: '#e6b80f',
   yellowAlpha: 'rgba(230,184,15,0.2)',
-  green: '#3de60f',
-  greenAlpha: 'rgba(61,230,15,0.2)',
+  green: '#2b980d',
+  greenAlpha: 'rgba(43, 152, 13,0.2)',
+  red: '#980d0d',
+  redAlpha: 'rgba(152, 13, 13, 0.2)',
 };
 
 export const palette: PaletteOptions = {

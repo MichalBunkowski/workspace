@@ -7,6 +7,7 @@ import { MAX_AMOUNT_OF_TRIES } from '../constants/game';
 
 interface WordleState {
   words: string[];
+  guesses: string[];
   drawnWord: string;
   isWinner: boolean;
   isGameOver: boolean;
@@ -17,6 +18,7 @@ interface WordleState {
 
 const initialState: WordleState = {
   words: [],
+  guesses: [],
   drawnWord: '',
   isWinner: false,
   isGameOver: false,
@@ -62,16 +64,23 @@ const useWordleStoreBase = create(
         },
 
         check: (word: string) => {
-          const isCorrect = word === get().drawnWord;
+          const userGuess = word.toLowerCase();
+
+          const isWinner = userGuess === get().drawnWord;
           const amountOfTries = get().amountOfTries + 1;
 
+          const isGameOver = amountOfTries >= MAX_AMOUNT_OF_TRIES || isWinner;
+
+          const guesses = [...get().guesses, userGuess];
+
           set({
-            isWinner: isCorrect,
-            isGameOver: amountOfTries >= MAX_AMOUNT_OF_TRIES || isCorrect,
+            isWinner,
+            isGameOver,
+            guesses,
             amountOfTries: amountOfTries,
           });
 
-          return isCorrect;
+          return isGameOver;
         },
         reset: () => {
           set(omit(initialState, ['words', 'drawnWord', 'isFetchingError']));

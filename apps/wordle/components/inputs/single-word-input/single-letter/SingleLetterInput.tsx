@@ -1,6 +1,5 @@
 import { useTheme } from '@mui/material';
 import { FC, FocusEventHandler, useMemo } from 'react';
-
 import { AnimatedTextField } from '@workspace/components/animated';
 import { useFocusHandler } from '@workspace/hooks';
 
@@ -56,7 +55,10 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
       };
     }
 
-    return null;
+    return {
+      border: theme.color.red,
+      background: theme.color.redAlpha,
+    };
   }, [isLetterAtCorrectPosition, isLetterCorrect, theme]);
 
   return (
@@ -65,7 +67,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
       value={value ?? ''}
       disabled={isRevealed || isDisabled}
       onChange={(e) => {
-        updateLetterAtIndex(index, e.target.value);
+        updateLetterAtIndex(index, e.target.value.toLowerCase());
       }}
       onFocus={() => {
         setFocused(true);

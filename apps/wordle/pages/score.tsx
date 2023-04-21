@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { calculateScore } from '@workspace/utils';
 
 import { Layout } from '../components/layout/Layout';
 import { useWordleStore } from '../store/wordle';
@@ -9,6 +10,7 @@ import { useWordleStore } from '../store/wordle';
 export function Score() {
   const router = useRouter();
 
+  const guesses = useWordleStore.use.guesses();
   const drawnWord = useWordleStore.use.drawnWord();
   const amountOfTries = useWordleStore.use.amountOfTries();
 
@@ -34,31 +36,44 @@ export function Score() {
   return (
     <Layout>
       <Typography variant="h3" align="center" gutterBottom>
-        Your score is <br /> 2137
+        Your score is <br /> {calculateScore(drawnWord, guesses)}
       </Typography>
+
+      <Typography variant="h5" align="center">
+        Correct word was
+        <Box my={2}>
+          <strong>{drawnWord}</strong>
+        </Box>
+      </Typography>
+
       {isWinner && (
         <Typography variant="h5" align="center">
-          Correct word was
-          <Box my={2}>
-            <strong>{drawnWord}</strong>
-          </Box>
-          It took you {formattedAmountOfTries} to guess it. <br /> Good job!
+          It took you {formattedAmountOfTries} to guess it. <br /> Good job!{' '}
         </Typography>
       )}
+
       {!isWinner && (
         <Typography variant="h5" align="center">
-          Correct word was <br /> <strong>{drawnWord}</strong>
-          <br />
-          It took you {formattedAmountOfTries} to guess it. <br /> Good job!
+          Good luck next time!
         </Typography>
       )}
-      <Box display="flex" justifyContent="center" mt={4}>
-        <Link href="/game" replace>
-          <Button variant="contained" color="secondary">
-            Play again
-          </Button>
-        </Link>
-      </Box>
+
+      <Grid container spacing={4} justifyContent="center" sx={{ mt: 3 }}>
+        <Grid item>
+          <Link href="/game" replace>
+            <Button variant="contained" color="secondary">
+              {isWinner ? 'Play again' : 'Try again'}
+            </Button>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/" replace>
+            <Button variant="contained" color="primary">
+              See rules
+            </Button>
+          </Link>
+        </Grid>
+      </Grid>
     </Layout>
   );
 }

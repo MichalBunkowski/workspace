@@ -56,9 +56,9 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
 
   const checkIfWordIsCorrect = useCallback(
     ({ word }: SingleWordFormValue) => {
-      const isValid = check(word);
+      const isGameOver = check(word);
 
-      if (isValid) {
+      if (isGameOver) {
         router.replace('/score');
       }
     },

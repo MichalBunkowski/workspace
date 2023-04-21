@@ -1,5 +1,6 @@
-import { Grid, Divider, Box } from '@mui/material';
+import { Grid, Divider, Box, Button, Typography } from '@mui/material';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 import {
   SingleWordForm,
@@ -25,6 +26,10 @@ export function Game() {
 
   return (
     <Layout>
+      <Typography variant="h5" align="center" sx={{ mb: 1 }}>
+        Good luck!
+      </Typography>
+
       <Grid container spacing={2}>
         {formsDef.map((formDef, index) => (
           <Grid item xs={12} key={formDef.id}>
@@ -41,6 +46,14 @@ export function Game() {
           </Grid>
         ))}
       </Grid>
+
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Link href="/" replace>
+          <Button variant="contained" color="secondary">
+            Exit game
+          </Button>
+        </Link>
+      </Box>
     </Layout>
   );
 }
