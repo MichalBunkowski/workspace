@@ -1,17 +1,23 @@
 import { PaletteOptions } from '@mui/material';
 
-export type Colors = Record<
+export type Color = Record<
   | 'white'
   | 'whitish'
   | 'grayish'
   | 'blackish'
   | 'blueGrey'
   | 'blueGreyDark'
-  | 'blueGreyLight',
+  | 'blueGreyLight'
+  | 'yellow'
+  | 'yellowAlpha'
+  | 'green'
+  | 'greenAlpha'
+  | 'red'
+  | 'redAlpha',
   string
 >;
 
-export const colors: Colors = {
+export const color: Color = {
   whitish: '#fafafa',
   white: '#fff',
   grayish: '#c7c7c7',
@@ -19,19 +25,25 @@ export const colors: Colors = {
   blueGreyLight: '#62727b',
   blueGreyDark: '#102027',
   blackish: '#212121',
+  yellow: '#e6b80f',
+  yellowAlpha: 'rgba(230,184,15,0.2)',
+  green: '#2b980d',
+  greenAlpha: 'rgba(43, 152, 13,0.2)',
+  red: '#980d0d',
+  redAlpha: 'rgba(152, 13, 13, 0.2)',
 };
 
 export const palette: PaletteOptions = {
   primary: {
-    main: colors.whitish,
-    light: colors.white,
-    dark: colors.grayish,
-    contrastText: colors.blackish,
+    main: color.whitish,
+    light: color.white,
+    dark: color.grayish,
+    contrastText: color.blackish,
   },
   secondary: {
-    main: colors.blueGrey,
-    light: colors.blueGreyLight,
-    dark: colors.blueGreyDark,
-    contrastText: colors.whitish,
+    main: color.blueGrey,
+    light: color.blueGreyLight,
+    dark: color.blueGreyDark,
+    contrastText: color.whitish,
   },
 };

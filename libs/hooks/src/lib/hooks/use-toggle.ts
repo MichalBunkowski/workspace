@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 type UseToggle = [boolean, (value?: boolean) => void];
 
-const useToggle = (initialValue = false): UseToggle => {
+export const useToggle = (initialValue = false): UseToggle => {
   const [toggle, setToggle] = useState<boolean>(initialValue);
 
   const onToggle = useCallback(
@@ -17,5 +17,3 @@ const useToggle = (initialValue = false): UseToggle => {
 
   return [toggle, onToggle];
 };
-
-export default useToggle;
