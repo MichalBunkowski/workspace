@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
 
 const TextField = forwardRef<HTMLDivElement, Omit<TextFieldProps, 'style'>>(
-  (props, ref) => <MuiTextField ref={ref} {...props} />
+  (props, ref) => <MuiTextField ref={ref} {...props} variant={props.variant} />
 );
 
 TextField.displayName = 'AnimatedTextField';

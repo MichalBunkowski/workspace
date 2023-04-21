@@ -5,10 +5,10 @@
   "scripts": {
     "start:wordle": "nx serve wordle",
     "format:wordle": "nx lint wordle --fix",
-    "build:wordle": "nx build wordle --fix",
+    "build:wordle": "nx build wordle",
     "start:blog": "nx serve blog",
     "format:blog": "nx lint blog --fix",
-    "build:blog": "nx build blog --fix"
+    "build:blog": "nx build blog"
   },
   "private": true,
   "dependencies": {
