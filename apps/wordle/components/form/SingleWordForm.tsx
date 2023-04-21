@@ -108,7 +108,7 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
           </SingleWordInput>
         )}
       />
-      <input type="submit" style={{ visibility: 'hidden' }} />
+      <input type="submit" style={{ visibility: 'hidden' }} hidden />
     </form>
   );
 };
