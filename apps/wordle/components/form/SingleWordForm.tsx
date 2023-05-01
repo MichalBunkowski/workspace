@@ -65,8 +65,10 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
     [router, check]
   );
 
-  const handleLastLetterEnterKey = useCallback<KeyboardEventHandler>(
-    (e) => {
+  const handleLastLetterEnterKey = useCallback<
+    (index: number) => KeyboardEventHandler
+  >(
+    (index) => (e) => {
       e.preventDefault();
 
       if (e.key === 'Enter' && formDef.length === index + 1) {
@@ -114,7 +116,7 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
                 isDisabled={isWinner || amountOfTries !== formIndex}
                 isRevealed={isSubmitSuccessful}
                 onBlur={field.onBlur}
-                onKeyPress={handleLastLetterEnterKey}
+                onKeyPress={handleLastLetterEnterKey(index)}
               />
             ))}
           </SingleWordInput>
