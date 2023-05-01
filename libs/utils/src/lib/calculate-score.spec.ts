@@ -1,4 +1,4 @@
-import { calculateScore, GUESS_IN_FIRST_TRY } from './calculateScore';
+import { calculateScore, GUESS_IN_FIRST_TRY } from './calculate-score';
 
 const correctWord = 'hello';
 

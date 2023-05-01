@@ -1,4 +1,4 @@
-import { findInputElementAndFocus } from './findInputElementAndFocus';
+import { findInputElementAndFocus } from './find-input-element-and-focus';
 
 describe('findInputElementAndFocus', () => {
   beforeAll(() => {

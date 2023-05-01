@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { renderHook } from '@testing-library/react';
 
-import { createSelectors } from './createSelectors';
+import { createSelectors } from './create-selectors';
 
 interface DummyState {
   a: string;

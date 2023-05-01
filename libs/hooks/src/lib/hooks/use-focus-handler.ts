@@ -9,7 +9,7 @@ import {
   SetStateAction,
 } from 'react';
 
-interface UseFocusHandlerOptions {
+export interface UseFocusHandlerOptions {
   observe: unknown;
   isValid: boolean;
   isEmpty: boolean;
