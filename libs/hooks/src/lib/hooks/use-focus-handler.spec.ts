@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 
 import { useFocusHandler, UseFocusHandlerOptions } from './use-focus-handler';
+import React from 'react';
 
 describe('useFocusHandler', () => {
   const mockFindInputElementAndFocus = jest.fn();
@@ -52,11 +53,37 @@ describe('useFocusHandler', () => {
       result.current[1](true);
     });
 
+    expect(result.current[0]).toBe(true);
+
     initialProps.isValid = true;
+
     rerender(initialProps);
 
-    expect(mockFindInputElementAndFocus).toBeCalledWith(
-      'input[name="nextInputName"]'
-    );
+    waitFor(() => {
+      expect(mockFindInputElementAndFocus).toBeCalledWith(
+        'input[name="nextInputName"]'
+      );
+    });
+  });
+
+  it('should call find and focus previous element when empty', () => {
+    const { result, rerender, initialProps } = setup();
+
+    act(() => {
+      result.current[1](true);
+    });
+
+    expect(result.current[0]).toBe(true);
+
+    initialProps.isEmpty = true;
+    rerender(initialProps);
+
+    result.current[2]({ key: 'Backspace' } as React.KeyboardEvent);
+
+    waitFor(() => {
+      expect(mockFindInputElementAndFocus).toBeCalledWith(
+        'input[name="previousInputName"]'
+      );
+    });
   });
 });

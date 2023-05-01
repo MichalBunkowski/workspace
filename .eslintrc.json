@@ -5,7 +5,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
+        "@nx/enforce-module-boundaries": [
           "error",
           {
             "allow": [],
@@ -21,17 +21,17 @@
       }
     },
     {
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "extends": ["plugin:@nx/typescript"],
       "files": ["*.ts", "*.tsx"],
       "rules": {}
     },
     {
-      "extends": ["plugin:@nrwl/nx/javascript"],
+      "extends": ["plugin:@nx/javascript"],
       "files": ["*.js", "*.jsx"],
       "rules": {}
     }
   ],
-  "plugins": ["@nrwl/nx", "unused-imports", "import", "react", "prettier"],
+  "plugins": ["@nx", "unused-imports", "import", "react", "prettier"],
   "root": true,
   "rules": {
     "import/export": "error",
