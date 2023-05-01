@@ -19,7 +19,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         transition={{ type: 'linear' }}
       >
         <Box
-          height="100vh"
+          minHeight="100vh"
           display="flex"
           flexDirection="column"
           justifyContent="center"

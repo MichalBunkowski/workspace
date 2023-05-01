@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, useCallback, useEffect } from 'react';
+import { FC, KeyboardEventHandler, useCallback, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { useRouter } from 'next/router';
@@ -65,6 +65,18 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
     [router, check]
   );
 
+  const handleLastLetterEnterKey = useCallback<
+    (index: number) => KeyboardEventHandler
+  >(
+    (index) => (e) => {
+      if (e.key === 'Enter' && formDef.length === index + 1) {
+        e.preventDefault();
+        handleSubmit(checkIfWordIsCorrect)();
+      }
+    },
+    [checkIfWordIsCorrect, handleSubmit]
+  );
+
   useEffect(() => {
     const isNextFormEnabled = amountOfTries === formIndex + 1;
 
@@ -103,6 +115,7 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
                 isDisabled={isWinner || amountOfTries !== formIndex}
                 isRevealed={isSubmitSuccessful}
                 onBlur={field.onBlur}
+                onKeyPress={handleLastLetterEnterKey(index)}
               />
             ))}
           </SingleWordInput>

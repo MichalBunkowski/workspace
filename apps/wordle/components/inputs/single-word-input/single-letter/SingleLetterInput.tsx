@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material';
-import { FC, FocusEventHandler, useMemo } from 'react';
+import { FC, FocusEventHandler, KeyboardEventHandler, useMemo } from 'react';
 import { AnimatedTextField } from '@workspace/components/animated';
 import { useFocusHandler } from '@workspace/hooks';
 
@@ -11,6 +11,7 @@ export interface SingleLetterInputProps {
   isRevealed: boolean;
   isDisabled?: boolean;
   onBlur: FocusEventHandler;
+  onKeyPress?: KeyboardEventHandler;
   prevName?: string;
   nextName?: string;
   isLetterCorrect?: boolean;
@@ -22,6 +23,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
   isRevealed,
   isDisabled,
   onBlur,
+  onKeyPress,
   prevName,
   nextName,
   isLetterCorrect,
@@ -76,6 +78,7 @@ export const SingleLetterInput: FC<SingleLetterInputProps> = ({
         setFocused(false);
         onBlur(e);
       }}
+      onKeyPress={onKeyPress}
       onKeyDown={handleFocusPreviousInput}
       sx={{
         '& input': {
