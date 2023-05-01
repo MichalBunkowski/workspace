@@ -79,7 +79,6 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
       id={id}
       autoComplete="off"
       onSubmit={handleSubmit(checkIfWordIsCorrect)}
-      onKeyDown={(e) => alert(`${e.code} ${e.key}`)}
     >
       <Controller
         name="word"
