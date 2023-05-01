@@ -69,9 +69,8 @@ export const SingleWordForm: FC<SingleWordFormProps> = ({
     (index: number) => KeyboardEventHandler
   >(
     (index) => (e) => {
-      e.preventDefault();
-
       if (e.key === 'Enter' && formDef.length === index + 1) {
+        e.preventDefault();
         handleSubmit(checkIfWordIsCorrect)();
       }
     },
