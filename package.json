@@ -35,6 +35,8 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@nrwl/cli": "14.7.17",
     "@nrwl/cypress": "14.7.17",
     "@nrwl/eslint-plugin-nx": "14.7.17",
@@ -63,6 +65,7 @@
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "nx": "14.7.17",
